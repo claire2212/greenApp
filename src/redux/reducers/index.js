@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 
+import router from './router-reducer';
+
 // Combine all
 const appReducer = combineReducers({
-
+  router,
 });
 
 // Setup root reducer

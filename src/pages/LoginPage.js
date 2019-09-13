@@ -1,6 +1,71 @@
 import React, { Component } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import {
+  Modal,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: 'white',
+    borderRadius: 60,
+    borderWidth: 1,
+    borderColor: 'white',
+    height: 60,
+    justifyContent: 'center',
+    marginVertical: 20,
+    width: '50%',
+  },
+  buttonText: {
+    textAlign: 'center',
+  },
+  mainView: {
+    alignItems: 'center',
+    backgroundColor: '#008720',
+    flex: 1,
+    justifyContent: 'center',
+  },
+  modal: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 20,
+    marginHorizontal: 50,
+    paddingHorizontal: 20,
+    paddingVertical: 40,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  modalButtons: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+    paddingTop: 40,
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  },
+  textInput: {
+    backgroundColor: 'white',
+    borderColor: '#25C700',
+    borderRadius: 60,
+    borderWidth: 1,
+    height: 60,
+    marginVertical: 20,
+    paddingHorizontal: 20,
+    width: '80%',
+  },
+});
 
 class LoginPage extends Component {
   constructor(props) {
@@ -8,44 +73,80 @@ class LoginPage extends Component {
     this.state = {
       username: null,
       password: null,
+      modalVisible: false
     };
   }
+
+  onExitModal = () => {
+    this.setState({ modalVisible: false });
+  };
 
   onChangeText = (value, field) => {
     this.setState({ [field]: value });
   };
 
-  onSubmitingEditing = (field) => {
+  onSubmitEditing = () => {
     this.secondTextInput.focused();
-  }
-
-  validateForm = () => {
-
   };
 
+  onValidateForm = () => {
+    this.setState({ modalVisible: true });
+  };
+
+
   render() {
-    const { username, password } = this.state;
+    const { modalVisible, username, password } = this.state;
     return (
-      <View>
+      <View style={styles.mainView}>
         <TextInput
           onChangeText={(value) => this.onChangeText(value, 'username')}
           onSubmitEditing={this.onSubmitEditing}
-          placeholder='identifiant'
-          returnKeyType='next'
+          placeholder="Identifiant"
+          returnKeyType="next"
+          style={styles.textInput}
           value={username}
         />
         <TextInput
           ref={(input) => { this.secondTextInput = input; }}
           onChangeText={(value) => this.onChangeText(value, 'password')}
-          onSubmitEditing={this.validateForm}
-          placeholder='mot de passe'
-          returnKeyType='done'
+          onSubmitEditing={this.onValidateForm}
+          placeholder="Mot de passe"
+          returnKeyType="done"
+          style={styles.textInput}
           value={password}
         />
-        <TouchableOpacity>
-
+        <TouchableOpacity
+          onPress={this.onValidateForm}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Valider</Text>
         </TouchableOpacity>
 
+        <Modal
+          animationType={null}
+          transparent
+          visible={!!modalVisible}
+        >
+          <View style={styles.modalContainer}>
+            <TouchableWithoutFeedback onPress={this.onExitModal}>
+              <View style={styles.overlay} />
+            </TouchableWithoutFeedback>
+
+            <View style={styles.modal}>
+              <Text style={[{ justifyContent: 'flex-start' }]}>Ceci est une version bêta. Un peu de patience :-)</Text>
+              <View>
+                <TouchableOpacity
+                  onPress={this.onExitModal}
+                  style={styles.modalButtons}
+                >
+                  <Text style={{ color: 'blue' }}>
+                    OK
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   }

@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 
 import AppRoutes from '../app/app.routes';
-import { AppStyles } from '../theme';
 
 class CustomRouter extends Component {
   reducerCreate = (params) => {
@@ -20,7 +19,7 @@ class CustomRouter extends Component {
   render() {
     const { children } = this.props;
     return (
-      <Router scenes={AppRoutes} createReducer={this.reducerCreate} style={AppStyles.appContainer}>
+      <Router scenes={AppRoutes} createReducer={this.reducerCreate}>
         {children}
       </Router>
     );
