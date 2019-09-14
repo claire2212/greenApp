@@ -161,7 +161,6 @@
 				859B869D3EC86D9A512638F7 /* Pods-greenAppTests.debug.xcconfig */,
 				803086131BE7E87E1EEC8EAF /* Pods-greenAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -626,6 +625,7 @@
 			baseConfigurationReference = 08CC5F1C8166C91E7ECCE4E8 /* Pods-greenApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = greenApp/Info.plist;
@@ -646,6 +646,7 @@
 			baseConfigurationReference = 252BEAF45518E68C69B685BB /* Pods-greenApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = greenApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

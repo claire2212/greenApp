@@ -9,6 +9,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import SplashScreen from 'react-native-splash-screen'
+
 
 const styles = StyleSheet.create({
   button: {
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
   },
   mainView: {
     alignItems: 'center',
-    backgroundColor: '#2A2E49',
+    backgroundColor: '#242843',
     flex: 1,
     justifyContent: 'center',
   },
@@ -77,6 +79,10 @@ class LoginPage extends Component {
       password: null,
       modalVisible: false
     };
+  }
+
+  componentDidMount() {
+    SplashScreen.hide();
   }
 
   onExitModal = () => {
