@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from 'react-native-splash-screen';
 
 
 const styles = StyleSheet.create({
@@ -69,6 +69,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     width: '80%',
   },
+  title: {
+    color: 'white',
+  }
 });
 
 class LoginPage extends Component {
@@ -99,8 +102,6 @@ class LoginPage extends Component {
 
   onValidateForm = () => {
     const { username, password } = this.state;
-    console.log('username', username.toLowerCase());
-    console.log('password', password.toLowerCase());
     if (username.toLowerCase() === 'demo' && password.toLowerCase() === 'demo') {
       Actions.home();
     } else {
@@ -113,6 +114,7 @@ class LoginPage extends Component {
     const { modalVisible, username, password } = this.state;
     return (
       <View style={styles.mainView}>
+        <Text style={styles.title}>Me connecter</Text>
         <TextInput
           onChangeText={(value) => this.onChangeText(value, 'username')}
           onSubmitEditing={this.onSubmitEditing}
