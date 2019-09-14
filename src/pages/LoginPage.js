@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
 import {
   Modal,
   StyleSheet,
@@ -11,10 +12,10 @@ import {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'white',
+    backgroundColor: '#127727',
     borderRadius: 60,
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: '#127727',
     height: 60,
     justifyContent: 'center',
     marginVertical: 20,
@@ -22,10 +23,11 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
+    color: 'white',
   },
   mainView: {
     alignItems: 'center',
-    backgroundColor: '#008720',
+    backgroundColor: '#2A2E49',
     flex: 1,
     justifyContent: 'center',
   },
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     backgroundColor: 'white',
-    borderColor: '#25C700',
+    borderColor: 'white',
     borderRadius: 60,
     borderWidth: 1,
     height: 60,
@@ -90,7 +92,14 @@ class LoginPage extends Component {
   };
 
   onValidateForm = () => {
-    this.setState({ modalVisible: true });
+    const { username, password } = this.state;
+    console.log('username', username.toLowerCase());
+    console.log('password', password.toLowerCase());
+    if (username.toLowerCase() === 'demo' && password.toLowerCase() === 'demo') {
+      Actions.home();
+    } else {
+      this.setState({ modalVisible: true });
+    }
   };
 
 
@@ -133,7 +142,9 @@ class LoginPage extends Component {
             </TouchableWithoutFeedback>
 
             <View style={styles.modal}>
-              <Text style={[{ justifyContent: 'flex-start' }]}>Ceci est une version bêta. Un peu de patience :-)</Text>
+              <Text style={[{ justifyContent: 'flex-start' }]}>
+                Un problème est survenu lors de l'authentification. Veuillez réessayer.
+              </Text>
               <View>
                 <TouchableOpacity
                   onPress={this.onExitModal}
